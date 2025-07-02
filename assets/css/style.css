@@ -50,6 +50,9 @@ h1,h2,h3,h4,h5,h6 {
   font-family: "Poppins", sans-serif;
   line-height: 1.618;
 }
+a {
+  color:#DBA423;
+}
 a,a:hover {
   text-decoration: none !important;
 }
@@ -2190,3 +2193,4 @@ body.dark-arshia , .dark-arshia .ajax-page-content{
       background-color: #535455  !important;
   }
 }
+
