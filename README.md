@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">
-  ✨ Welcome to My Digital Universe! ✨<br/>
+  ✨ Welcome to My Digital Universes! ✨<br/>
   <em>Let's Connect and Create Magic Together!</em> 💬✨
 </h1>
 
