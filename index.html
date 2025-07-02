@@ -1,783 +1,1167 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" class="max-width-d">
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kelly Igiogbe - Portfolio</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        /* Animated Background */
-        .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            z-index: -1;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            z-index: 1000;
-            padding: 1rem 0;
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: white;
-            text-decoration: none;
-        }
-
-        nav.scrolled .logo {
-            color: #333;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        nav.scrolled .nav-links a {
-            color: #333;
-        }
-
-        .nav-links a:hover {
-            color: #f093fb;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #f093fb;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .hero .subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .hero .description {
-            font-size: 1.2rem;
-            margin-bottom: 3rem;
-            opacity: 0.8;
-            line-height: 1.8;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .btn-outline:hover {
-            background: white;
-            color: #333;
-            transform: translateY(-2px);
-        }
-
-        /* Floating Icons */
-        .floating-icons {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .floating-icon {
-            position: absolute;
-            font-size: 2rem;
-            color: rgba(255, 255, 255, 0.1);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-icon:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-        .floating-icon:nth-child(2) { top: 60%; left: 80%; animation-delay: 2s; }
-        .floating-icon:nth-child(3) { top: 80%; left: 20%; animation-delay: 4s; }
-        .floating-icon:nth-child(4) { top: 30%; left: 70%; animation-delay: 1s; }
-        .floating-icon:nth-child(5) { top: 70%; left: 60%; animation-delay: 3s; }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(10deg); }
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 100px 0;
-            position: relative;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-title h2 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .section-title p {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.9);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-text {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .about-text h3 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-            color: white;
-        }
-
-        .about-text p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 1.5rem;
-        }
-
-        .roles {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .role-tag {
-            background: linear-gradient(45deg, #f093fb, #f5576c);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-
-        .about-visual {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .profile-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-            max-width: 300px;
-        }
-
-        .profile-avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 4rem;
-            color: white;
-        }
-
-        .profile-card h4 {
-            color: white;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .profile-card p {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .skill-item {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2rem 1rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .skill-item:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .skill-icon {
-            width: 60px;
-            height: 60px;
-            margin: 0 auto 1rem;
-            background: linear-gradient(45deg, #f093fb, #f5576c);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: white;
-        }
-
-        .skill-item h4 {
-            color: white;
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        /* Contact Section */
-        .contact-content {
-            text-align: center;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 3rem 0;
-            flex-wrap: wrap;
-        }
-
-        .social-link {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .social-link:hover {
-            transform: translateY(-5px) scale(1.1);
-            background: linear-gradient(45deg, #f093fb, #f5576c);
-            box-shadow: 0 10px 25px rgba(240, 147, 251, 0.4);
-        }
-
-        .contact-info {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            max-width: 600px;
-            margin: 2rem auto;
-        }
-
-        .contact-info h3 {
-            color: white;
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-info p {
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in-up {
-            opacity: 0;
-            animation: fadeInUp 0.8s ease forwards;
-        }
-
-        /* Scroll Reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.6s ease;
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .subtitle {
-                font-size: 1.2rem;
-            }
-
-            .hero .description {
-                font-size: 1rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .section-title h2 {
-                font-size: 2rem;
-            }
-
-            .skills-grid {
-                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-                gap: 1rem;
-            }
-
-            .social-links {
-                gap: 1rem;
-            }
-
-            .social-link {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(45deg, #764ba2, #f093fb);
-        }
-    </style>
-</head>
-<body>
-    <!-- Animated Background -->
-    <div class="animated-bg"></div>
-
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">Kelly Igiogbe</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="floating-icons">
-            <div class="floating-icon"><i class="fas fa-code"></i></div>
-            <div class="floating-icon"><i class="fas fa-laptop-code"></i></div>
-            <div class="floating-icon"><i class="fas fa-mobile-alt"></i></div>
-            <div class="floating-icon"><i class="fas fa-database"></i></div>
-            <div class="floating-icon"><i class="fas fa-cloud"></i></div>
-        </div>
-        <div class="hero-content">
-            <h1 class="fade-in-up">Kelly Igiogbe</h1>
-            <p class="subtitle fade-in-up" style="animation-delay: 0.2s;">✨ Where Faith Meets Innovation ✨</p>
-            <p class="description fade-in-up" style="animation-delay: 0.4s;">
-                Passionate tech visionary with 7+ years of transforming ideas into digital reality. 
-                I blend deep faith with cutting-edge innovation, crafting software and blockchain solutions that make a difference.
-            </p>
-            <div class="cta-buttons fade-in-up" style="animation-delay: 0.6s;">
-                <a href="#about" class="btn btn-primary">
-                    <i class="fas fa-user"></i>
-                    About Me
-                </a>
-                <a href="#contact" class="btn btn-outline">
-                    <i class="fas fa-envelope"></i>
-                    Get In Touch
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <div class="section-title reveal">
-                <h2>🌟 About Me</h2>
-                <p>Believer in the power of code to change the world, one line at a time!</p>
-            </div>
-            <div class="about-content">
-                <div class="about-text reveal">
-                    <h3>My Journey</h3>
-                    <p>
-                        With over 7 years in the tech industry, I've dedicated my career to building innovative solutions 
-                        that bridge the gap between faith and technology. As a Gospel Teacher and Senior Software Developer, 
-                        I bring a unique perspective to every project.
-                    </p>
-                    <p>
-                        Currently serving as CTO at Cliffy Edge Network Solutions, I lead teams in creating 
-                        cutting-edge applications while investing in the future through cryptocurrency and blockchain technologies.
-                    </p>
-                    <div class="roles">
-                        <span class="role-tag">🙏 Gospel Teacher</span>
-                        <span class="role-tag">💻 Senior Software Developer</span>
-                        <span class="role-tag">₿ Crypto Investor</span>
-                        <span class="role-tag">🚀 CTO</span>
-                    </div>
-                </div>
-                <div class="about-visual reveal">
-                    <div class="profile-card">
-                        <div class="profile-avatar">
-                            <i class="fas fa-user-tie"></i>
-                        </div>
-                        <h4>Kelly Igiogbe</h4>
-                        <p>Senior Software Developer & CTO</p>
-                        <p>7+ Years Experience</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <div class="container">
-            <div class="section-title reveal">
-                <h2>🛠️ My Tech Arsenal</h2>
-                <p>Building dreams with these incredible technologies</p>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-item reveal">
-                    <div class="skill-icon"><i class="fab fa-js-square"></i></div>
-                    <h4>JavaScript</h4>
-                </div>
-                <div class="skill-item reveal">
-                    <div class="skill-icon"><i class="fab fa-react"></i></div>
-                    <h4>React</h4>
-                </div>
-                <div class="skill-item reveal">
-                    <div class="skill-icon"><i class="fab fa-vuejs"></i></div>
-                    <h4>Vue.js</h4>
-                </div>
-                <div class="skill-item reveal">
-                    <div class="skill-icon"><i class="fab fa-html5"></i></div>
-                    <h4>HTML5</h4>
-                </div>
-                <div class="skill-item reveal">
-                    <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
-                    <h4>CSS3</h4>
-                </div>
-                <div class="skill-item reveal">
-                    <div class="skill-icon"><i class="fab fa-bootstrap"></i></div>
-                    <h4>Bootstrap</h4>
-                </div>
-                <div class="skill-item reveal">
-                    <div class="skill-icon"><i class="fas fa-database"></i></div>
-                    <h4>MongoDB</h4>
-                </div>
-                <div class="skill-item reveal">
-                    <div class="skill-icon"><i class="fas fa-database"></i></div>
-                    <h4>MySQL</h4>
-                </div>
-                <div class="skill-item reveal">
-                    <div class="skill-icon"><i class="fab fa-node-js"></i></div>
-                    <h4>Node.js</h4>
-                </div>
-                <div class="skill-item reveal">
-                    <div class="skill-icon"><i class="fab fa-php"></i></div>
-                    <h4>PHP</h4>
-                </div>
-                <div class="skill-item reveal">
-                    <div class="skill-icon"><i class="fab fa-laravel"></i></div>
-                    <h4>Laravel</h4>
-                </div>
-                <div class="skill-item reveal">
-                    <div class="skill-icon"><i class="fab fa-github"></i></div>
-                    <h4>GitHub</h4>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <div class="container">
-            <div class="section-title reveal">
-                <h2>💬 Let's Connect</h2>
-                <p>Ready to create magic together? Let's start a conversation!</p>
-            </div>
-            <div class="contact-content">
-                <div class="social-links reveal">
-                    <a href="https://odion-cloud.github.io" class="social-link" title="Portfolio">
-                        <i class="fas fa-globe"></i>
-                    </a>
-                    <a href="mailto:itskellyigiogbe@gmail.com" class="social-link" title="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                    <a href="https://ng.linkedin.com/in/igiogbe-kelly-41127b175" class="social-link" title="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="https://x.com/Odion_cloud" class="social-link" title="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="https://www.instagram.com/igiogbekelly/" class="social-link" title="Instagram">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a href="https://web.facebook.com/kelven.igiogbe?_rdc=1&_rdr#" class="social-link" title="Facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                </div>
-                <div class="contact-info reveal">
-                    <h3>Ready to Work Together?</h3>
-                    <p>
-                        Whether you need a cutting-edge web application, mobile solution, or blockchain project, 
-                        I'm here to turn your vision into reality. Let's collaborate and create something amazing!
-                    </p>
-                    <a href="mailto:itskellyigiogbe@gmail.com" class="btn btn-primary" style="margin-top: 2rem;">
-                        <i class="fas fa-paper-plane"></i>
-                        Send Message
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Scroll reveal animation
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealOnScroll = () => {
-            revealElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                
-                if (elementTop < windowHeight - 100) {
-                    element.classList.add('active');
-                }
-            });
-        };
-
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', revealOnScroll);
-
-        // Parallax effect for floating icons
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelectorAll('.floating-icon');
-            
-            parallax.forEach(icon => {
-                const speed = 0.5;
-                icon.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-        });
-
-        // Add loading animation
-        window.addEventListener('load', () => {
-            document.body.style.opacity = '1';
-        });
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Kelly Igiogbe - Senior Software Developer & Gospel Teacher | CTO Viewmynte</title>
+    <meta name="description" content="Kelly Igiogbe - Passionate tech visionary with 7+ years of transforming ideas into digital reality. Gospel Teacher, Senior Software Developer, Crypto Investor, CTO @ Viewmynte Crypto Platform. Expert in JavaScript, React, Vue.js, PHP, Laravel, Ionic & Capacitor mobile apps." />
+    <meta name="keywords" content="Kelly Igiogbe, Senior Software Developer, Gospel Teacher, CTO, Viewmynte, Crypto Investor, JavaScript, React, Vue.js, PHP, Laravel, Node.js, MongoDB, MySQL, Ionic, Capacitor, Mobile Apps, Web Development, Cryptocurrency Investment, Crypto Projects, Gospel Ministry, Full Stack Developer, Nigeria, Tech Leadership" />
+    <meta name="author" content="Kelly Igiogbe" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="distribution" content="global" />
+    <meta name="rating" content="general" />
+    <meta name="geo.region" content="NG" />
+    <meta name="geo.country" content="Nigeria" />
+    <meta name="theme-color" content="#FFD700" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://odion-cloud.github.io/" />
+    <meta property="og:title" content="Kelly Igiogbe - Senior Software Developer & Gospel Teacher | CTO Viewmynte" />
+    <meta property="og:description" content="7+ years experienced Senior Software Developer, CTO of Viewmynte crypto platform, Gospel Teacher, and Cryptocurrency Investor. Expert in JavaScript, React, Vue.js, PHP, Laravel, mobile apps development." />
+    <meta property="og:image" content="https://odion-cloud.github.io/assets/img/profile-img.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Kelly Igiogbe Portfolio" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://odion-cloud.github.io/" />
+    <meta property="twitter:title" content="Kelly Igiogbe - Senior Software Developer & Gospel Teacher | CTO Viewmynte" />
+    <meta property="twitter:description" content="7+ years experienced Senior Software Developer, CTO of Viewmynte crypto platform, Gospel Teacher, and Cryptocurrency Investor. Expert in JavaScript, React, Vue.js, PHP, Laravel." />
+    <meta property="twitter:image" content="https://odion-cloud.github.io/assets/img/profile-img.jpg" />
+    <meta property="twitter:site" content="@Odion_cloud" />
+    <meta property="twitter:creator" content="@Odion_cloud" />
+    
+    <!-- LinkedIn -->
+    <meta property="article:author" content="https://ng.linkedin.com/in/igiogbe-kelly-41127b175" />
+    
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Kelly Igiogbe",
+      "alternateName": "Odion Cloud",
+      "description": "Senior Software Developer, Gospel Teacher, CTO of Viewmynte, and Cryptocurrency Investor",
+      "url": "https://odion-cloud.github.io",
+      "image": "https://odion-cloud.github.io/assets/img/profile-img.jpg",
+      "sameAs": [
+        "https://ng.linkedin.com/in/igiogbe-kelly-41127b175",
+        "https://www.instagram.com/igiogbekelly/",
+        "https://x.com/Odion_cloud",
+        "https://web.facebook.com/kelven.igiogbe"
+      ],
+      "jobTitle": "Chief Technology Officer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Viewmynte",
+        "description": "Cryptocurrency Platform"
+      },
+      "knowsAbout": [
+        "JavaScript",
+        "React",
+        "Vue.js", 
+        "PHP",
+        "Laravel",
+        "Node.js",
+        "MongoDB",
+        "MySQL",
+        "Ionic",
+        "Capacitor",
+        "Mobile App Development",
+        "Cryptocurrency Investment",
+        "Gospel Teaching",
+        "Full Stack Development"
+      ],
+      "alumniOf": "Brykiva Training Center",
+      "email": "itskellyigiogbe@gmail.com",
+      "telephone": ["+2349073717643", "+2347047994288"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "Nigeria"
+      }
+    }
     </script>
-</body>
+    <!--  FavIcon  -->
+    <link rel="shortcut icon" href="assets/img/favicon.png">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700" rel="stylesheet">
+    <!-- Bootstrap Css -->
+    <link rel="stylesheet" href="assets/css/bootstrap.css">
+    <!-- Bootstrap Icon -->
+    <link rel="stylesheet" href="assets/css/bootstrap-icons.css">
+    <!-- Malihu Jquery Custom ScrollBar Css -->
+    <link rel="stylesheet" href="assets/css/jquery.mCustomScrollbar.css">
+    <!-- Animate Css -->
+    <link rel="stylesheet" href="assets/css/animate.min.css">
+    <!-- Swiper Css -->
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    <!-- Magnific Popup Css -->
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <!--  Custom Style Css  -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!--  Color Css  -->
+    <link rel="stylesheet" href="assets/css/golden.css"  id="option-color">
+  </head>
+  <body class="dark-arshia max-width-d">
+
+    <!-- Preloader -->
+    <div id="line-loader">
+      <div class="middle-line"></div>
+    </div>
+
+    <!--   Menu Overlay Mobile -->
+    <div class="menu-overlay d-none"></div>
+
+    <!--   Right Side Start  -->
+    <div class="right-side d-none d-lg-block">
+      <div id="date"></div>
+      <div class="social-box">
+        <div class="follow-label">
+          <span>Follow Me</span>
+        </div>
+        <div class="social d-none d-lg-block">
+          <a href="https://ng.linkedin.com/in/igiogbe-kelly-41127b175" target="_blank">
+            <i class="bi bi-linkedin"></i>
+          </a>
+          <a href="https://www.instagram.com/igiogbekelly/" target="_blank">
+            <i class="bi bi-instagram"></i>
+          </a>
+          <a href="https://x.com/Odion_cloud" target="_blank">
+            <i class="bi bi-twitter"></i>
+          </a>
+        </div>
+      </div>
+      <div class="next-prev-page">
+        <button type="button" class="prev-page bg-base-color hstack">
+          <i class="bi bi-chevron-compact-up mx-auto"></i>
+        </button>
+        <button type="button" class="next-page bg-base-color mt-3 hstack">
+          <i class="bi bi-chevron-compact-down mx-auto"></i>
+        </button>
+      </div>
+    </div>
+    <!--  Right Side End  -->
+
+    <!--  Left Side Start  -->
+    <div class="left-side  nav-close">
+      <div class="menu-content-align">
+        <div class="left-side-image">
+          <img src="assets/img/profile-img.jpg" alt="/">
+        </div>
+        <h1 class="mt-1">Kelly Igiogbe</h1>
+        <a class="download-cv primary-button d-none d-lg-inline-block" href="mailto:itskellyigiogbe@gmail.com">Contact Me</a>
+        <div class="container d-lg-none d-inline-block">
+          <div class="row">
+            <div class="col-12 text-center">
+              <p class="text-muted mb-0">Senior Software Developer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="menu-align">
+        <ul class="list-group menu text-center " id="menu">
+          <li class="list-group-item">
+            <a href="#hero">
+              <i class="bi bi-house"></i>
+              <span>home</span>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#about" class="custom-btn">
+              <i class="bi bi-person"></i>
+              <span>about</span>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#resume">
+              <i class="bi bi-clipboard-check"></i>
+              <span>resume</span>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#portfolio">
+              <i class="bi bi-collection"></i>
+              <span>works</span>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#blog">
+              <i class="bi bi-book"></i>
+              <span>blog</span>
+            </a>
+          </li>
+          <li class="list-group-item">
+            <a href="#contact">
+              <i class="bi bi-geo-alt"></i>
+              <span>contact</span>
+            </a>
+          </li>
+        </ul>
+        <div class="menu-footer">
+          <a class="download-cv primary-button mt-3 mb-4 d-lg-none" href="mailto:itskellyigiogbe@gmail.com">Contact Me</a>
+          <div class="social d-lg-none d-block">
+            <a href="https://ng.linkedin.com/in/igiogbe-kelly-41127b175" class="d-inline-block" target="_blank">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://www.instagram.com/igiogbekelly/" class="d-inline-block mx-4" target="_blank">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://x.com/Odion_cloud" class="d-inline-block" target="_blank">
+              <i class="bi bi-twitter"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  Left Side End  -->
+
+    <!--  Main Start  -->
+    <main id="main" class="main-2">
+
+      <!--  Hero Start  -->
+      <section id="hero" class="section hero w-100">
+        <!-- <svg class="extend-icon" xmlns="http://www.w3.org/2000/svg" width="400" height="400" fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
+          <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z"/>
+        </svg> -->
+        <img class="extend-icon" src="assets/img/responsive-dark.png" alt="/">
+        <div class="hero-center">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 text-center text-lg-start">
+                <div class="hero-image d-inline-block d-lg-none">
+                  <img src="assets/img/profile-img.jpg" alt="/">
+                </div>
+                <div class="hero-content mt-4 mx-auto mx-lg-0 text-lg-left mt-lg-none">
+                  <p class="base-color">SENIOR SOFTWARE DEVELOPER • GOSPEL TEACHER • CTO</p>
+                  <h2>Hello , I’m <span class="base-color">Kelly Igiogbe </span>Welcome to my Digital Universe! </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-footer d-block d-lg-none">
+          <a class="download-cv primary-button mt-3 mb-4 d-lg-none" href="mailto:itskellyigiogbe@gmail.com">Contact Me</a>
+          <div class="social d-lg-none mb-4 d-block">
+            <a href="https://ng.linkedin.com/in/igiogbe-kelly-41127b175" class="d-inline-block" target="_blank">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://www.instagram.com/igiogbekelly/" class="d-inline-block mx-4" target="_blank">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://x.com/Odion_cloud" class="d-inline-block" target="_blank">
+              <i class="bi bi-twitter"></i>
+            </a>
+          </div>
+        </div>
+      </section>
+      <!--  Hero End  -->
+
+      <!--  About Start  -->
+      <section id="about" class="section about">
+        <div class="container">
+          <!-- Introducce Me -->
+          <div class="about-boxes">
+            <div class="row">
+              <div class="col-lg-5">
+                <div class="about-img">
+                  <img src="assets/img/about-img.jpg" alt="/">
+                  <div class="border-img"></div>
+                </div>
+              </div>
+              <div class="col-lg-7">
+                <div class="about-description">
+                  <h3 class="mb-3">Where Faith Meets Innovation - My Mission & Craft</h3>
+                  <p class="about-text">I’m a passionate tech visionary with 7+ years of transforming ideas into digital reality. As a Gospel Teacher, Senior Software Developer, Crypto Investor, and CTO at Viewmynte (my crypto platform), I blend deep faith with cutting-edge innovation, crafting software and cryptocurrency solutions that make a difference. Believer in the power of code to change the world, one line at a time!</p>
+                </div>
+                <!-- Personal Info -->
+                <div class="row">
+                  <div class="col-lg-6">
+                    <ul class="list-unstyled personal-info">
+                      <li>Website : <small><a href="https://odion-cloud.github.io" target="_blank">odion-cloud.github.io</a></small>
+                      </li>
+                      <li>Email : <small><a href="mailto:itskellyigiogbe@gmail.com">itskellyigiogbe@gmail.com</a></small>
+                      </li>
+                      <li>Company : <small>Viewmynte</small>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-lg-6">
+                    <ul class="list-unstyled personal-info">
+                      <li>Experience : <small>7+ Years</small>
+                      </li>
+                      <li>Position : <small>CTO</small>
+                      </li>
+                      <li>Freelance : <small>Available</small>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-12">
+                    <a href="#contact" class="to-contact primary-button mt-2">Hire me</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  Count up  -->
+          <div id="count-up" class="count-up text-center box-border">
+            <div class="row">
+              <!-- Item-01 -->
+              <div class="col-6 col-lg-3 my-4 count-item">
+                <div class="count-icon">
+                  <i class="bi bi-code-slash"></i>
+                </div>
+                <span class="timer count-number" data-from="0" data-to="74" data-speed="5000">0</span>
+                <p class="mb-0">Projects Completed</p>
+              </div>
+              <!-- Item-02 -->
+              <div class="col-6 col-lg-3 my-4 count-item">
+                <div class="count-icon">
+                  <i class="bi bi-people"></i>
+                </div>
+                <span class="timer count-number" data-from="0" data-to="72" data-speed="5000">0</span>
+                <p class="mb-0">Happy Clients</p>
+              </div>
+              <!-- Item-03 -->
+              <div class="col-6 col-lg-3 my-4 count-item">
+                <div class="count-icon">
+                  <i class="bi bi-clock"></i>
+                </div>
+                <span class="timer count-number" data-from="0" data-to="7" data-speed="5000">0</span>
+                <p class="mb-0">Years Experience</p>
+              </div>
+              <!-- Item-04 -->
+              <div class="col-6 col-lg-3 my-4 count-item">
+                <div class="count-icon">
+                  <i class="bi bi-currency-bitcoin"></i>
+                </div>
+                <span class="timer count-number" data-from="0" data-to="7" data-speed="5000">0</span>
+                <p class="mb-0">Crypto Projects</p>
+              </div>
+            </div>
+          </div>
+          <!--  Skills  -->
+          <div class="skills">
+            <div class="row pt-5">
+              <div class="col-lg-7">
+                <div class="skill-description">
+                  <h3 class="mb-3">Technologies & Programming Languages I Master</h3>
+                  <p class="mb-0">With 7+ years of experience, I've mastered cutting-edge technologies to deliver cost-effective and high-quality digital solutions that transform businesses worldwide</p>
+                </div>
+              </div>
+              <div class="col-lg-5">
+                <ul class="knowledge-item">
+                  <li>JavaScript (ES6+) & React.js</li>
+                  <li>Vue.js & Node.js Development</li>
+                  <li>PHP & Laravel Framework</li>
+                  <li>Ionic & Capacitor Mobile Apps</li>
+                  <li>MongoDB & MySQL Databases</li>
+                  <li>HTML5, CSS3 & Bootstrap</li>
+                  <li>Git Version Control & GitHub</li>
+                  <li>Cryptocurrency Investment & Trading</li>
+                  <li>Gospel Teaching & Ministry</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!--  Skillbar  -->
+          <div class="row mt-5 skills">
+            <div class="col-lg-6">
+              <h3 class="subtitle">Technical Skills</h3>
+              <div id="skills">
+                <!-- Item 01 -->
+                <div class="col-lg-12 skill-box">
+                  <div class="skill-text">
+                    <div class="skillbar-title">Full Stack Development</div>
+                    <div class="skill-bar-percent"><span data-from="0" data-to="95" data-speed="4000">95</span>%</div>
+                  </div>
+                  <div class="skillbar clearfix" data-percent="95%">
+                    <div class="skillbar-bar"></div>
+                  </div>
+                </div>
+                <!-- Item 02 -->
+                <div class="col-lg-12 skill-box">
+                  <div class="skill-text">
+                    <div class="skillbar-title">Cryptocurrency Investment</div>
+                    <div class="skill-bar-percent"><span data-from="0" data-to="95" data-speed="4000">95</span>%</div>
+                  </div>
+                  <div class="skillbar clearfix" data-percent="95%">
+                    <div class="skillbar-bar"></div>
+                  </div>
+                </div>
+                <!-- Item 03 -->
+                <div class="col-lg-12 skill-box">
+                  <div class="skill-text">
+                    <div class="skillbar-title">Team Leadership</div>
+                    <div class="skill-bar-percent"><span data-from="0" data-to="90" data-speed="4000">90</span>%</div>
+                  </div>
+                  <div class="skillbar clearfix" data-percent="90%">
+                    <div class="skillbar-bar"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-5 ms-auto mt-5 mt-lg-0">
+              <h3 class="subtitle">Programming Languages</h3>
+              <div class="language-bar">
+                <!-- Item 01 -->
+                <div class="language-skill">
+                  <h6 class="mb-0">JavaScript <span> Expert</span>
+                  </h6>
+                  <ul class="list-inline text-right">
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-half"></i>
+                    </li>
+                  </ul>
+                </div>
+                <!-- Item 02 -->
+                <div class="language-skill">
+                  <h6 class="mb-0">PHP <span>Advanced</span>
+                  </h6>
+                  <ul class="list-inline text-right">
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle"></i>
+                    </li>
+                  </ul>
+                </div>
+                <!-- Item 03 -->
+                <div class="language-skill">
+                  <h6 class="mb-0">HTML/CSS <span>Expert</span>
+                  </h6>
+                  <ul class="list-inline text-right">
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                    <li class="list-inline-item">
+                      <i class="bi bi-circle-fill"></i>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  Client  -->
+          <div class="testimonial mt-5">
+            <div class="owl-carousel">
+              <!-- Item 01 -->
+              <div class="testimonial-box">
+                <p class="testimonial-comment">"My motivation is customer satisfaction. Trust me and trust your growth asset management to my expertise gained over the years. My goal is continuous achievement.!"</p>
+                <div class="testimonial-item">
+                  <div class="testimonial-image">
+                    <img src="assets/img/client-01.png" alt="/">
+                  </div>
+                  <div class="testimonial-info">
+                    <p class="mb-0">Leo Anderson</p>
+                    <small class="testimonial-jub">Web Designer</small>
+                  </div>
+                </div>
+              </div>
+              <!-- Item 02 -->
+              <div class="testimonial-box">
+                <p class="testimonial-comment">"My motivation is customer satisfaction. Trust me and trust your growth asset management to my expertise gained over the years. My goal is continuous achievement.!"</p>
+                <div class="testimonial-item">
+                  <div class="testimonial-image">
+                    <img src="assets/img/client-02.png" alt="/">
+                  </div>
+                  <div class="testimonial-info">
+                    <p class="mb-0">Hanah Smith</p>
+                    <small class="testimonial-jub">Web Developer</small>
+                  </div>
+                </div>
+              </div>
+              <!-- Item 03 -->
+              <div class="testimonial-box">
+                <p class="testimonial-comment">"My motivation is customer satisfaction. Trust me and trust your growth asset management to my expertise gained over the years. My goal is continuous achievement.!"</p>
+                <div class="testimonial-item">
+                  <div class="testimonial-image">
+                    <img src="assets/img/client-03.png" alt="/">
+                  </div>
+                  <div class="testimonial-info">
+                    <p class="mb-0">Angela Anderson</p>
+                    <small class="testimonial-jub">Web Designer</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--  About End  -->
+
+      <!--  Resume Start  -->
+      <section id="resume" class="section">
+        <div class="container">
+          <!-- Servises -->
+          <div class="services  mb-6">
+            <div class="boxes">
+              <h3 class="subtitle">Services</h3>
+              <div class="row vertical-line">
+                <!-- Item 01 -->
+                <div class="col-md-6">
+                  <div class="services-box">
+                    <i class="bi bi-code-slash services-icon"></i>
+                    <div class="services-content">
+                      <h6 class="services-head">Full Stack Development</h6>
+                      <p class="services-description mb-0">Complete web application development using JavaScript, React, Vue.js, Node.js, PHP, and Laravel for scalable solutions.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Item 02 -->
+                <div class="col-md-6">
+                  <div class="services-box">
+                    <i class="bi bi-server services-icon"></i>
+                    <div class="services-content">
+                      <h6 class="services-head">Backend Development</h6>
+                      <p class="services-description mb-0">Robust server-side development with PHP, Laravel, Node.js, and API integration for high-performance applications.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Item 03 -->
+                <div class="col-md-6">
+                  <div class="services-box">
+                    <i class="bi bi-database services-icon"></i>
+                    <div class="services-content">
+                      <h6 class="services-head">Database Management</h6>
+                      <p class="services-description mb-0">Expert database design and optimization using MongoDB and MySQL for efficient data storage and retrieval.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Item 04 -->
+                <div class="col-md-6">
+                  <div class="services-box">
+                    <i class="bi bi-laptop services-icon"></i>
+                    <div class="services-content">
+                      <h6 class="services-head">Frontend & Mobile Development</h6>
+                      <p class="services-description mb-0">Modern responsive web interfaces using React, Vue.js, HTML5, CSS3, Bootstrap, and cross-platform mobile apps with Ionic & Capacitor.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Item 05 -->
+                <div class="col-md-6">
+                  <div class="services-box">
+                    <i class="bi bi-currency-bitcoin services-icon"></i>
+                    <div class="services-content">
+                      <h6 class="services-head">Cryptocurrency Investment & Projects</h6>
+                      <p class="services-description mb-0">Expert cryptocurrency investment strategies, crypto project creation, and partnership development. Market analysis and tokenomics consultation for crypto ventures.</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Item 06 -->
+                <div class="col-md-6">
+                  <div class="services-box">
+                    <i class="bi bi-people services-icon"></i>
+                    <div class="services-content">
+                      <h6 class="services-head">Technical Leadership & CTO</h6>
+                      <p class="services-description mb-0">Strategic technology leadership, team management, and technical consulting for startups and established businesses.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  Resume  -->
+          <div class="resume">
+            <!--  TimeLine Education  -->
+            <div class="boxes my-6">
+              <h3 class="subtitle">Education</h3>
+              <div class="row vertical-line">
+                <!--  Item 01  -->
+                <div class="col-md-6">
+                  <div class="timeline-box">
+                    <div class="time-line-header">
+                      <p class="timeline-year">2014 - 2018</p>
+                      <h6 class="timeline-title">Programming & Software Development - Brykiva Training Center</h6>
+                    </div>
+                    <div class="timeline-content">
+                      <p>Comprehensive programming training at Brykiva Training Center focusing on software development, algorithms, and database management. Gained strong foundation in programming fundamentals and system design through hands-on learning and practical projects.</p>
+                    </div>
+                  </div>
+                </div>
+                <!--  Item 02  -->
+                <div class="col-md-6">
+                  <div class="timeline-box">
+                    <div class="time-line-header">
+                      <p class="timeline-year">2018 - 2019</p>
+                      <h6 class="timeline-title">Full Stack Web Development Bootcamp</h6>
+                    </div>
+                    <div class="timeline-content">
+                      <p>Intensive training in modern web technologies including JavaScript, React, Node.js, PHP, and database management. Hands-on projects and real-world applications.</p>
+                    </div>
+                  </div>
+                </div>
+                <!--  Item 03  -->
+                <div class="col-md-6">
+                  <div class="timeline-box">
+                    <div class="time-line-header">
+                      <p class="timeline-year">2019 - 2020</p>
+                      <h6 class="timeline-title">Cryptocurrency Investment & Trading Course</h6>
+                    </div>
+                    <div class="timeline-content">
+                      <p>Comprehensive training in cryptocurrency investment strategies, market analysis, and trading techniques. Learned about crypto project evaluation, tokenomics, and investment portfolio management.</p>
+                    </div>
+                  </div>
+                </div>
+                <!--  Item 04  -->
+                <div class="col-md-6">
+                  <div class="timeline-box">
+                    <div class="time-line-header">
+                      <p class="timeline-year">2016 - 2018</p>
+                      <h6 class="timeline-title">Theological Studies - Seminary</h6>
+                    </div>
+                    <div class="timeline-content">
+                      <p>Comprehensive study of biblical theology, pastoral ministry, and gospel teaching. Equipped for effective Christian ministry and spiritual leadership in communities.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--  TimeLine Experience  -->
+            <div class="boxes mt-6 mb-3">
+              <h3 class="subtitle">Experience</h3>
+              <div class="row vertical-line">
+                <!--   Item 01   -->
+                <div class="col-md-6">
+                  <div class="timeline-box">
+                    <div class="time-line-header">
+                      <p class="timeline-year">2022 - Present</p>
+                      <h6 class="timeline-title">Chief Technology Officer - Viewmynte</h6>
+                    </div>
+                    <div class="timeline-content">
+                      <p>Leading technical strategy and innovation for Viewmynte, my own crypto platform. Overseeing development teams, cryptocurrency projects, and architectural decisions for scalable crypto solutions.</p>
+                    </div>
+                  </div>
+                </div>
+                <!--   Item 02   -->
+                <div class="col-md-6">
+                  <div class="timeline-box">
+                    <div class="time-line-header">
+                      <p class="timeline-year">2020 - 2022</p>
+                      <h6 class="timeline-title">Senior Full Stack Developer - Tech Startup</h6>
+                    </div>
+                    <div class="timeline-content">
+                      <p>Developed and maintained complex web applications using React, Vue.js, Node.js, and PHP. Led mobile app development with Ionic & Capacitor for cross-platform solutions.</p>
+                    </div>
+                  </div>
+                </div>
+                <!--   Item 03   -->
+                <div class="col-md-6">
+                  <div class="timeline-box">
+                    <div class="time-line-header">
+                      <p class="timeline-year">2018 - Present</p>
+                      <h6 class="timeline-title">Cryptocurrency Investor & Project Creator</h6>
+                    </div>
+                    <div class="timeline-content">
+                      <p>Active crypto investor specializing in buying and selling cryptocurrencies. Created own crypto projects and established partnerships with other cryptocurrency initiatives. Expert in market analysis and project evaluation.</p>
+                    </div>
+                  </div>
+                </div>
+                <!--   Item 04   -->
+                <div class="col-md-6">
+                  <div class="timeline-box">
+                    <div class="time-line-header">
+                      <p class="timeline-year">2017 - Present</p>
+                      <h6 class="timeline-title">Gospel Teacher & Ministry Leader</h6>
+                    </div>
+                    <div class="timeline-content">
+                      <p>Passionate gospel teacher serving in church ministry and community outreach. Combining faith with technology to impact lives and spread the message of hope and salvation.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--  Resume End  -->
+
+      <!--  Portfolio Start  -->
+      <section id="portfolio" class="section portfolio">
+        <div class="container">
+          <div class="heading-meta-container">
+            <h2 class="heading-title">Portfolio</h2>
+            <h6 class="description">See My Ausome Work</h6>
+          </div>
+          <div class="row">
+            <!--   Portfolio Filters   -->
+            <ul id="portfolio-filter" class="list-inline col-lg-12 portfolio-filter text-center">
+              <li class="list-inline-item">
+                <a href="javascript:void(0)" data-filter="*" class="active">All</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="javascript:void(0)" data-filter=".webdesign">Web Design</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="javascript:void(0)" data-filter=".mobiledesign">Mobile Design</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="javascript:void(0)" data-filter=".sound">Sound</a>
+              </li>
+              <li class="list-inline-item">
+                <a href="javascript:void(0)" data-filter=".graphic">Graphic</a>
+              </li>
+            </ul>
+          </div>
+          <div class="portfolio-items border-line-v row">
+            <!-- Item 01 -->
+            <div class="col-md-6 col-lg-4 portfolio-item sound">
+              <div class="portfolio-box">
+                <div class="portfolio-image">
+                  <img src="assets/img/portfolio-item1.jpg" alt="/">
+                  <div class="portfolio-icon">
+                    <a href="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/221650664&#038;color=%23ff5500&#038;auto_play=false&#038;hide_related=false&#038;show_comments=true&#038;show_user=true&#038;show_reposts=false&#038;show_teaser=true&#038;visual=true" class="portfolio-magnific mfp-iframe">
+                      <i class="bi bi-music-note-beamed"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="portfolio-content">
+                  <h6 class="blog-header">Tak photo on the waves</h6>
+                  <p class="mb-0">image</p>
+                </div>
+              </div>
+            </div>
+            <!-- Item 02 -->
+            <div class="col-md-6 col-lg-4 portfolio-item sound">
+              <div class="portfolio-box">
+                <div class="portfolio-image">
+                  <img src="assets/img/portfolio-item2.jpg" alt="/">
+                  <div class="portfolio-icon">
+                    <a href="https://player.vimeo.com/video/158284739" class="portfolio-magnific mfp-iframe">
+                      <i class="bi bi-camera-video"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="portfolio-content">
+                  <h6 class="blog-header">Tak photo on the waves</h6>
+                  <p class="mb-0">image</p>
+                </div>
+              </div>
+            </div>
+            <!-- Item 03 -->
+            <div class="col-md-6 col-lg-4 portfolio-item sound">
+              <div class="portfolio-box">
+                <div class="portfolio-image">
+                  <img src="assets/img/portfolio-item3.jpg" alt="/">
+                  <div class="portfolio-icon">
+                    <a href="portfolio-01-dark.html" class="ajax-page-load">
+                      <i class="bi bi-file-earmark-text"></i>
+                    </a>
+                  </div>
+                </div>
+                <div class="portfolio-content">
+                  <h6 class="blog-header">Tak photo on the waves</h6>
+                  <p class="mb-0">image</p>
+                </div>
+              </div>
+            </div>
+            <!-- Item 04 -->
+            <div class="col-md-6 col-lg-4 portfolio-item mobiledesign webdesign">
+              <div class="portfolio-image">
+                <img src="assets/img/portfolio-item4.jpg" alt="/">
+                <div class="portfolio-icon">
+                  <a href="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/221650664&#038;color=%23ff5500&#038;auto_play=false&#038;hide_related=false&#038;show_comments=true&#038;show_user=true&#038;show_reposts=false&#038;show_teaser=true&#038;visual=true" class="portfolio-magnific mfp-iframe">
+                    <i class="bi bi-music-note-beamed"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h6 class="blog-header">Detailed Project 2</h6>
+                <p class="mb-0">image</p>
+              </div>
+            </div>
+            <!-- Item 05 -->
+            <div class="col-md-6 col-lg-4 portfolio-item mobiledesign sound">
+              <div class="portfolio-image">
+                <img src="assets/img/portfolio-item5.jpg" alt="/">
+                <div class="portfolio-icon">
+                  <a href="https://player.vimeo.com/video/158284739" class="portfolio-magnific mfp-iframe">
+                    <i class="bi bi-camera-video"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h6 class="blog-header">Detailed Project 2</h6>
+                <p class="mb-0">image</p>
+              </div>
+            </div>
+            <!-- Item 06 -->
+            <div class="col-md-6 col-lg-4 portfolio-item mobiledesign">
+              <div class="portfolio-image">
+                <img src="assets/img/portfolio-item6.jpg" alt="/">
+                <div class="portfolio-icon">
+                  <a href="portfolio-01-dark.html" class="ajax-page-load">
+                    <i class="bi bi-file-earmark-text"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="portfolio-content">
+                <h6 class="blog-header">Detailed Project 2</h6>
+                <p class="mb-0">image</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--  Portfolio End  -->
+
+      <!--  Blog Start  -->
+      <section id="blog" class="section blog">
+        <div class="container">
+          <h3 class="subtitle">Latest News</h3>
+          <div class="boxes">
+            <div class="row vertical-line">
+              <!-- Item 01 -->
+              <div class="col-md-6">
+                <a href="webdesigner-blog-singel-dark.html" class="blog-box">
+                  <div class="blog-image">
+                    <img src="assets/img/blog-item1.jpg" alt="/">
+                    <div class="blog-icon">
+                      <i class="bi bi-journal-text"></i>
+                    </div>
+                  </div>
+                  <div class="blog-post-content">
+                    <div class="blog-dates">
+                      <span>20 June 2021</span>
+                    </div>
+                    <h6 class="blog-header">Stay informed about the latest cameras and money of that</h6>
+                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</p>
+                  </div>
+                </a>
+              </div>
+              <!-- Item 02 -->
+              <div class="col-md-6">
+                <a href="webdesigner-blog-singel-dark.html" class="blog-box">
+                  <div class="blog-image">
+                    <img src="assets/img/blog-item2.jpg" alt="/">
+                    <div class="blog-icon">
+                      <i class="bi bi-journal-text"></i>
+                    </div>
+                  </div>
+                  <div class="blog-post-content">
+                    <div class="blog-dates">
+                      <span>20 June 2021</span>
+                    </div>
+                    <h6 class="blog-header">What Resources help you with your photography</h6>
+                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</p>
+                  </div>
+                </a>
+              </div>
+              <!-- Item 03 -->
+              <div class="col-md-6">
+                <a href="webdesigner-blog-singel-dark.html" class="blog-box">
+                  <div class="blog-image">
+                    <img src="assets/img/blog-item3.jpg" alt="/">
+                    <div class="blog-icon">
+                      <i class="bi bi-journal-text"></i>
+                    </div>
+                  </div>
+                  <div class="blog-post-content">
+                    <div class="blog-dates">
+                      <span>20 June 2021</span>
+                    </div>
+                    <h6 class="blog-header">Improve your Skills with blog posts on photography</h6>
+                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</p>
+                  </div>
+                </a>
+              </div>
+              <!-- Item 04 -->
+              <div class="col-md-6">
+                <a href="webdesigner-blog-singel-dark.html" class="blog-box">
+                  <div class="blog-image">
+                    <img src="assets/img/blog-item4.jpg" alt="/">
+                    <div class="blog-icon">
+                      <i class="bi bi-journal-text"></i>
+                    </div>
+                  </div>
+                  <div class="blog-post-content">
+                    <div class="blog-dates">
+                      <span>20 June 2021</span>
+                    </div>
+                    <h6 class="blog-header">Get Inspiration from photo stories, interviews, and resource</h6>
+                    <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--  Blog End  -->
+
+      <!-- Contact Start -->
+      <section id="contact" class="section contact w-100">
+        <div class="container">
+          <h3 class="subtitle">Get in Touch</h3>
+
+          <div class="row mt-4">
+            <div class="col-12">
+              <div class="contact-media-section text-center">
+                <!-- Email Addresses -->
+                <div class="contact-group mb-5">
+                  <h3 class="contact-title mb-4">📧 Email Me</h3>
+                  <div class="contact-item mb-3">
+                    <a href="mailto:itskellyigiogbe@gmail.com" class="contact-link">
+                      <i class="bi bi-envelope-fill me-3" style="font-size: 2rem;"></i>
+                      <span style="font-size: 1.5rem; font-weight: bold;">itskellyigiogbe@gmail.com</span>
+                    </a>
+                  </div>
+                  <div class="contact-item mb-3">
+                    <a href="mailto:kellymercer802@gmail.com" class="contact-link">
+                      <i class="bi bi-envelope-fill me-3" style="font-size: 2rem;"></i>
+                      <span style="font-size: 1.5rem; font-weight: bold;">kellymercer802@gmail.com</span>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- WhatsApp Numbers -->
+                <div class="contact-group mb-5">
+                  <h3 class="contact-title mb-4">📱 WhatsApp Me</h3>
+                  <div class="contact-item mb-3">
+                    <a href="https://wa.me/2349073717643" target="_blank" class="contact-link">
+                      <i class="bi bi-whatsapp me-3" style="font-size: 2rem;"></i>
+                      <span style="font-size: 1.5rem; font-weight: bold;">+234 907 371 7643</span>
+                    </a>
+                  </div>
+                  <div class="contact-item mb-3">
+                    <a href="https://wa.me/2347047994288" target="_blank" class="contact-link">
+                      <i class="bi bi-whatsapp me-3" style="font-size: 2rem;"></i>
+                      <span style="font-size: 1.5rem; font-weight: bold;">+234 704 799 4288</span>
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Social Media -->
+                <div class="contact-group mb-5">
+                  <h3 class="contact-title mb-4">🌐 Follow Me</h3>
+                  <div class="social-media-grid">
+                    <div class="contact-item mb-4">
+                      <a href="https://ng.linkedin.com/in/igiogbe-kelly-41127b175" target="_blank" class="contact-link">
+                        <i class="bi bi-linkedin me-3" style="font-size: 2rem;"></i>
+                        <span style="font-size: 1.5rem; font-weight: bold;">LinkedIn</span>
+                      </a>
+                    </div>
+                    <div class="contact-item mb-4">
+                      <a href="https://www.instagram.com/igiogbekelly/" target="_blank" class="contact-link">
+                        <i class="bi bi-instagram me-3" style="font-size: 2rem;"></i>
+                        <span style="font-size: 1.5rem; font-weight: bold;">Instagram</span>
+                      </a>
+                    </div>
+                    <div class="contact-item mb-4">
+                      <a href="https://x.com/Odion_cloud" target="_blank" class="contact-link">
+                        <i class="bi bi-twitter me-3" style="font-size: 2rem;"></i>
+                        <span style="font-size: 1.5rem; font-weight: bold;">Twitter</span>
+                      </a>
+                    </div>
+                    <div class="contact-item mb-4">
+                      <a href="https://web.facebook.com/kelven.igiogbe" target="_blank" class="contact-link">
+                        <i class="bi bi-facebook me-3" style="font-size: 2rem;"></i>
+                        <span style="font-size: 1.5rem; font-weight: bold;">Facebook</span>
+                      </a>
+                    </div>
+                    <div class="contact-item mb-4">
+                      <a href="https://odion-cloud.github.io" target="_blank" class="contact-link">
+                        <i class="bi bi-globe me-3" style="font-size: 2rem;"></i>
+                        <span style="font-size: 1.5rem; font-weight: bold;">Website</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--  Contact End  -->
+
+    </main>
+    <!--  Main End  -->
+
+    <!--  Mobile Next and Prev Button Start -->
+    <div class="next-prev-page d-block d-lg-none">
+      <button type="button" class="prev-page bg-base-color hstack">      
+        <i class="bi bi-chevron-compact-left mx-auto"></i>
+      </button>
+      <button type="button" class="next-page bg-base-color mt-1 mt-lg-3 hstack">
+        <i class="bi bi-chevron-compact-right mx-auto"></i>
+      </button>
+    </div>
+    <!--  Mobile Next and Prev Button End -->
+
+    <!--  Navbar Button Mobile Start -->
+    <div class="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <!--  Navbar Button Mobile End -->
+
+    <!--  Background Shapes Start  -->
+    <div class="area">
+      <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <!--  Background Shapes End  -->
+
+    <!--  Color Pallet  -->
+    <div id="color-switcher" class="color-switcher">
+      <div class="text-center color-pallet hide">
+        <h6 class="theme-skin-title">Light &amp; Dark</h6>
+        <ul class="color-scheme list-inline">
+            <li class="list-inline-item">
+                <a href="javascript:void(0)" class="light-scheme"><i class="bi bi-brightness-high"></i> Light</a>
+            </li>
+            <li class="list-inline-item">
+                <a href="javascript:void(0)" class="dark-scheme active"><i class="bi bi-moon"></i> Dark</a>
+            </li>
+          </ul>
+          <h6 class="text-center mt-3 text-dark">Select your color</h6>
+          <ul class="pattern">
+              <li>
+                  <a class="color1" href="javascript:void(0)"></a>
+              </li>
+              <li>
+                  <a class="color2" href="javascript:void(0)"></a>
+              </li>
+              <li>
+                  <a class="color3" href="javascript:void(0)"></a>
+              </li>
+              <li>
+                  <a class="color4" href="javascript:void(0)"></a>
+              </li>
+              <li>
+                  <a class="color5" href="javascript:void(0)"></a>
+              </li>
+              <li>
+                  <a class="color6" href="javascript:void(0)"></a>
+              </li>
+              <li>
+                  <a class="color7" href="javascript:void(0)"></a>
+              </li>
+              <li>
+                  <a class="color8" href="javascript:void(0)"></a>
+              </li>
+              <li>
+                  <a class="color9" href="javascript:void(0)"></a>
+              </li>
+          </ul>
+      </div>
+    </div>
+
+    <!-- Mouase Magic Cursor Start -->
+    <div class="m-magic-cursor mmc-outer"></div>
+	  <div class="m-magic-cursor mmc-inner"></div>
+    <!-- Mouase Magic Cursor End -->
+
+    <!--  JavaScripts  -->
+    <!--  Jquery 3.4.1  -->
+    <script data-cfasync="false" src="assets/js/email-decode.min.js"></script><script src="assets/js/jquery-3.4.1.min.js"></script>
+    <!--  Bootstrap Js  -->
+    <script src="assets/js/bootstrap.js"></script>
+    <!--  Malihu ScrollBar Js  -->
+    <script src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!--  CountTo Js  -->
+    <script src="assets/js/jquery.countTo.js"></script>
+    <!--  Swiper Js  -->
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <!--  Isotope Js  -->
+    <script src="assets/js/isotope.pkgd.min.js"></script>
+    <!--  Magnific Popup Js  -->
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <!--  Arshia Js  -->
+    <script src="assets/js/arshia.js"></script>
+  </body>
 </html>
