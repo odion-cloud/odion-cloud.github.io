@@ -11,7 +11,7 @@
 <a href="https://odion-cloud.github.io">
   <img height="50" src="https://cdn.jsdelivr.net/gh/odion-cloud/odion-cloud@main/assets/icons/world.png"/>
 </a>
-<a href="https://mail.google.com/mail/?view=cm&fs=1&to=itsodion-cloud@gmail.com">
+<a href="https://mail.google.com/mail/?view=cm&fs=1&to=itskellyigiogbe@gmail.com">
   <img height="50" src="https://cdn.jsdelivr.net/gh/odion-cloud/odion-cloud@main/assets/icons/gmail.png"/>
 </a>
 <a href="https://ng.linkedin.com/in/igiogbe-kelly-41127b175">
